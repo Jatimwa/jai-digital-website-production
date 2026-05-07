@@ -10,39 +10,50 @@
    ========================================================= */
 
 @theme {
-  /* ---------- COLOUR — Technical Editorial v4 ---------- */
+  /* ---------- COLOUR — Technical Ladder v4 ---------- */
 
   /* The Signal (Brand Core) */
   --color-brand: #c9d900;
   --color-brand-hover: #d4e533;
   --color-brand-deep: #a8b400;
 
-  /* Register A: Sage (Warm/Philosophy) 
-     Used for narrative, history, and "The Sage" archetype. */
-  --color-surface-sage: #141411;       /* Base canvas */
-  --color-card-sage: #1c1d18;          /* Component elevation on Sage */
-  
-  /* Register B: Engineer (Cool/Technical)
-     Used for data, infrastructure, and "The Engineer" archetype. */
-  --color-surface-engineer: #0c0d0f;   /* Deeper technical black */
-  --color-card-engineer: #111317;      /* Blue-grey component lift */
+  /* Surface Ladder — Register A: Sage (Warm) */
+  --color-surface-sage-0: #141411; /* Page Canvas */
+  --color-surface-sage-1: #1c1c18; /* Card Base */
+  --color-surface-sage-2: #252520; /* Card Hover */
+  --color-surface-sage-3: #2f2f29; /* High-Visibility / CTA */
 
-  /* Utility Surfaces */
-  --color-surface-0: var(--color-surface-sage); /* Site-wide default */
-  --color-surface-1: var(--color-card-sage);    /* Site-wide card default */
-  --color-surface-2: #252621;                   /* High-visibility lift */
-  --color-surface-3: #2f312a;                   /* Interactive state */
+  /* Surface Ladder — Register B: Engineer (Cool) */
+  --color-surface-engineer-0: #0c0d0f; /* Page Canvas */
+  --color-surface-engineer-1: #141518; /* Card Base */
+  --color-surface-engineer-2: #1c1e22; /* Card Hover */
+  --color-surface-engineer-3: #25282e; /* High-Visibility / CTA */
 
-  /* The Ink (Typography) */
-  --color-ink-0: #e6e6e1;              /* High-contrast (Headings) */
-  --color-ink-1: #c5c5c0;              /* Standard prose (Floor) */
-  --color-ink-2: #a1a19a;              /* Muted labels / metadata */
-  --color-ink-3: #63645e;              /* Furniture / Hairlines */
+  /* Utility Aliases (Defaults) */
+  --color-surface-0: var(--color-surface-sage-0);
+  --color-surface-1: var(--color-surface-sage-1);
+  --color-surface-2: var(--color-surface-sage-2);
+  --color-surface-3: var(--color-surface-sage-3);
+
+  /* The Ink (Typography Intensity) */
+  --color-ink-0: #f5f5f5;      /* High-contrast (Headings) */
+  --color-ink-1: #d4d4d4;      /* Standard prose */
+  --color-ink-2: #a3a3a3;      /* Muted labels / metadata */
+  --color-ink-3: #525252;      /* Furniture / Hairlines */
+
+  /* Structural */
+  --color-subtle: rgba(255, 255, 255, 0.05);
 
   /* Status */
-  --color-success: #22c55e;
-  --color-error: #ef4444;
+  --color-success: #c9d900;
+  --color-error: #ff3333;
   --color-warning: #f59e0b;
+
+  /* Legacy Shims */
+  --color-surface-sage: var(--color-surface-sage-0);
+  --color-card-sage: var(--color-surface-sage-1);
+  --color-surface-engineer: var(--color-surface-engineer-0);
+  --color-card-engineer: var(--color-surface-engineer-1);
 
   /* ---------- TYPE — Antigravity Standard v4 ---------- */
   --font-display: "Unbounded", system-ui, sans-serif;
@@ -65,13 +76,16 @@
 
   /* Static Mono (Geist Mono) */
   --type-mono-xs: 0.75rem;                          /* 12px (Eyebrow) */
+  --type-mono-tiny: 0.625rem;                        /* 10px */
 
   /* Stat-Scale */
   --type-stat-md: 4.5rem;                           /* 72px */
   --type-stat-lg: 6.5rem;                           /* 104px */
+  --type-stat-xl: 8.5rem;                           /* 136px */
 
   /* ---------- SPACING — Fibonacci Ladder ---------- */
 
+  --space-0: 0;
   --space-1: 0.25rem;   /* 4px */
   --space-2: 0.5rem;    /* 8px */
   --space-3: 0.75rem;   /* 12px */
@@ -81,6 +95,12 @@
   --space-7: 4rem;      /* 64px */
   --space-8: 6.5rem;    /* 104px */
   --space-9: 10.5rem;   /* 168px */
+
+  /* ---------- SIZE UNITS ---------- */
+  --size-input-h: 3.5rem;
+  --size-input-h-sm: 2.75rem;
+  --size-input-h-lg: 4.5rem;
+  --size-icon-sm: 1.25rem;
 
   /* ---------- RADIUS & CONTAINER ---------- */
 
@@ -95,6 +115,12 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-brand: cubic-bezier(0.25, 1, 0.5, 1);
   --duration-reveal: 600ms;
+
+  /* ---------- MOTION & SCALE ---------- */
+  --scale-hover: 1.02;
+  --scale-active: 0.98;
+  --opacity-icon-mute: 0.7;
+  --space-arrow-nudge: 2px;
 }
 
 /* Base Styles */

@@ -17,13 +17,13 @@ export function Card({
   padding = "md" 
 }: CardProps) {
   const variants = {
-    sage: "bg-[var(--color-card-sage)] border-[var(--color-surface-2)]",
-    engineer: "bg-[var(--color-card-engineer)] border-[var(--color-surface-2)]",
+    sage: "bg-[var(--color-surface-sage-1)] border-[var(--color-subtle)]",
+    engineer: "bg-[var(--color-surface-engineer-1)] border-[var(--color-subtle)]",
     elevated: "bg-[var(--color-surface-2)] border-[var(--color-surface-3)] shadow-2xl",
   };
 
   const paddings = {
-    none: "p-0",
+    none: "p-[var(--space-0)]",
     sm: "p-[var(--space-4)]",
     md: "p-[var(--space-6)]",
     lg: "p-[var(--space-8)]",
