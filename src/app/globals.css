@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@source "./**/*.{js,ts,jsx,tsx,mdx}";
+
+/* =========================================================
+   JAi Digital — Design Language v4 (LOCKED)
+   Lead Designer: Gemini CLI
+   Target: Owen (SME MD/Owner) — Newport/Cardiff/UK.
+   Posture: FT-Level Technical Authority. No hype. No rot.
+   ========================================================= */
+
+@theme {
+  /* ---------- COLOUR — Technical Editorial v4 ---------- */
+
+  /* The Signal (Brand Core) */
+  --color-brand: #c9d900;
+  --color-brand-hover: #d4e533;
+  --color-brand-deep: #a8b400;
+
+  /* Register A: Sage (Warm/Philosophy) 
+     Used for narrative, history, and "The Sage" archetype. */
+  --color-surface-sage: #141411;       /* Base canvas */
+  --color-card-sage: #1c1d18;          /* Component elevation on Sage */
+  
+  /* Register B: Engineer (Cool/Technical)
+     Used for data, infrastructure, and "The Engineer" archetype. */
+  --color-surface-engineer: #0c0d0f;   /* Deeper technical black */
+  --color-card-engineer: #111317;      /* Blue-grey component lift */
+
+  /* Utility Surfaces */
+  --color-surface-0: var(--color-surface-sage); /* Site-wide default */
+  --color-surface-1: var(--color-card-sage);    /* Site-wide card default */
+  --color-surface-2: #252621;                   /* High-visibility lift */
+  --color-surface-3: #2f312a;                   /* Interactive state */
+
+  /* The Ink (Typography) */
+  --color-ink-0: #e6e6e1;              /* High-contrast (Headings) */
+  --color-ink-1: #c5c5c0;              /* Standard prose (Floor) */
+  --color-ink-2: #a1a19a;              /* Muted labels / metadata */
+  --color-ink-3: #63645e;              /* Furniture / Hairlines */
+
+  /* Status */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+
+  /* ---------- TYPE — Antigravity Standard v4 ---------- */
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-editorial: "Newsreader", serif;
+  --font-body: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+
+  /* Fluid Display (Unbounded 200/300) */
+  --type-fluid-h1: clamp(3rem, 7vw, 6.5rem);        /* 48px → 104px */
+  --type-fluid-h2: clamp(2.25rem, 4.5vw, 4.5rem);   /* 36px → 72px */
+  --type-fluid-h3: clamp(1.25rem, 2vw, 1.75rem);    /* 20px → 28px */
+  
+  /* Editorial / Lede (Newsreader 300) */
+  --type-body-l: clamp(1.5rem, 2.2vw, 2.25rem);     /* 24px → 36px */
+
+  /* Static Body (Geist) */
+  --type-body-m: 1.25rem;                           /* 20px */
+  --type-body-s: 1.125rem;                          /* 18px (Floor) */
+  --type-body-xs: 0.875rem;                         /* 14px */
+
+  /* Static Mono (Geist Mono) */
+  --type-mono-xs: 0.75rem;                          /* 12px (Eyebrow) */
+
+  /* Stat-Scale */
+  --type-stat-md: 4.5rem;                           /* 72px */
+  --type-stat-lg: 6.5rem;                           /* 104px */
+
+  /* ---------- SPACING — Fibonacci Ladder ---------- */
+
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2.5rem;    /* 40px */
+  --space-7: 4rem;      /* 64px */
+  --space-8: 6.5rem;    /* 104px */
+  --space-9: 10.5rem;   /* 168px */
+
+  /* ---------- RADIUS & CONTAINER ---------- */
+
+  --radius-card: 1.5rem;     /* 24px */
+  --radius-pill: 9999px;
+
+  --container-max: 100rem;   /* 1600px */
+  --prose-max: 68.75rem;     /* 1100px */
+
+  /* ---------- MOTION ---------- */
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-brand: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-reveal: 600ms;
+}
+
+/* Base Styles */
+html {
+  background: var(--color-surface-sage);
+  color: var(--color-ink-0);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--type-body-s);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #141411;
+}
+
+/* Nuclear Reset for Inputs (Prevent floating focus rings) */
+input:focus,
+input:focus-visible,
+button:focus,
+button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Core Utilities */
+.accent {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-brand);
+}
+
+.standfirst {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--type-body-l);
+  line-height: 1.4;
+  color: var(--color-ink-0);
+}
+
+@utility font-display { font-family: var(--font-display); letter-spacing: -0.04em; }
+@utility font-body { font-family: var(--font-body); }
+@utility font-mono { font-family: var(--font-mono); }
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility underline-reveal {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
