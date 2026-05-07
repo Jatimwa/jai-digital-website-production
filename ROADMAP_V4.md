@@ -25,7 +25,7 @@
 - [x] Audit each atom for semantic correctness and v4 variable compliance.
 
 ### Phase 3: Primitives (Component Library) (Current)
-- [ ] **Wayfinding:** `SiteHeader` · `Footer` · `WordmarkReveal`.
+- [x] **Wayfinding:** `SiteHeader` · `Footer`.
 - [ ] **Editorial:** `PullQuote` · `EditorialBreak` · `MaskedLetter`.
 - [ ] **Mechanics:** `BentoGrid` · `StackScrollCards` · `PerspectiveMarquee`.
 
@@ -45,6 +45,7 @@
 - [x] **Typography Study (2026-05-06):** Hybrid Tension (Option A) locked. Unbounded Display + Newsreader Italic accents.
 - [x] **Color Registers (2026-05-06):** Sage (Warm) and Engineer (Cool) backgrounds locked.
 - [x] **Atom Primitives (2026-05-06):** Button, Badge, Rule, Input, and Card locked. Visual sign-off on tension affordances and focus resets.
+- [x] **Wayfinding (2026-05-06):** SiteHeader (Primary solid CTA) and Footer verified and locked.
 
 ---
 
