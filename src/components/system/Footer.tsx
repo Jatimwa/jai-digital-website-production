@@ -11,7 +11,7 @@ export function Footer() {
             <div className="font-display font-extralight text-[length:var(--type-body-l)] tracking-tighter">
               JAi <span className="accent">Digital</span>
             </div>
-            <p className="font-body text-[length:var(--type-body-s)] text-[color:var(--color-ink-2)] max-w-sm leading-relaxed">
+            <p className="font-body text-[length:var(--type-body-s)] text-[color:var(--color-ink-2)] max-w-[var(--width-narrow)] leading-relaxed">
               Technical consultancy for UK SMEs. Senior-practitioner depth. Zero agency rot.
             </p>
           </div>

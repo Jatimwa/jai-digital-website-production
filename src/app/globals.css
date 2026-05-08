@@ -102,6 +102,23 @@
   --size-input-h-lg: 4.5rem;
   --size-icon-sm: 1.25rem;
 
+  /* ---------- LAYERING & POSITIONING ---------- */
+  --z-header: 50;
+  --z-overlay: 100;
+  --z-modal: 200;
+  --z-behind: -1;
+  --z-base: 1;
+
+  --pos-top-0: 0;
+  --pos-left-0: 0;
+  --pos-right-0: 0;
+  --pos-bottom-0: 0;
+
+  /* ---------- WIDTHS ---------- */
+  --width-prose: 68.75rem;    /* 1100px (Matches --prose-max) */
+  --width-container: 100rem; /* 1600px (Matches --container-max) */
+  --width-narrow: 24rem;     /* 384px (max-w-sm) */
+
   /* ---------- RADIUS & CONTAINER ---------- */
 
   --radius-card: 1.5rem;     /* 24px */

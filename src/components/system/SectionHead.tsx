@@ -18,7 +18,7 @@ export function SectionHead({ idx, kicker, title, lede }: SectionHeadProps) {
             {idx}
           </span>
         )}
-        <Eyebrow tone="signal">{kicker}</Eyebrow>
+        <Eyebrow tone="default">{kicker}</Eyebrow>
       </div>
       
       <h2 className="font-display font-extralight text-[length:var(--type-fluid-h2)] leading-[1.05] tracking-[-0.04em] text-balance mb-[var(--space-6)] text-[color:var(--color-ink-0)]">

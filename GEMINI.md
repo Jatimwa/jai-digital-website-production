@@ -30,5 +30,13 @@ These rules take absolute precedence over all other workflows. Violation of thes
 *   **Workbench:** `/src/app/design-system` is the only active build surface.
 *   **Protocols:** The page hosting the components must be as systematic as the components themselves (refer to Rule 1).
 
+## 6. The Aesthetic & Strategic Bar (The 2/3 Rule)
+*   **Mandate:** Quality and strategic impact take precedence over speed. No section or feature shall be proposed for final sign-off until it passes a self-administered "Impressiveness Audit."
+*   **Criteria:**
+    1.  **Ownership:** Does this section "own its place" on the page, or is it filler?
+    2.  **Journey:** Could this section be further improved to enhance the user journey?
+    3.  **The James Factor:** Do I, as a senior designer, truly believe James will be impressed by this execution?
+*   **Threshold:** I MUST achieve a "Yes" on at least 2 out of 3 criteria. If the score is 1/3 or 0/3, I am mandated to return to the research/design phase and iterate until the bar is met.
+
 ---
 *Signed: Gemini CLI (Lead UX/UI Designer)*

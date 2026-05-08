@@ -5,7 +5,7 @@ export function SiteHeader() {
   const navItems = ["Services", "Case Studies", "Manifesto"];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 border-b border-[var(--color-subtle)] bg-[var(--color-surface-0)] backdrop-blur-md opacity-90">
+    <header className="fixed top-[var(--pos-top-0)] left-[var(--pos-left-0)] w-full z-[var(--z-header)] border-b border-[var(--color-subtle)] bg-[var(--color-surface-0)] backdrop-blur-md opacity-90">
       <Container className="h-[var(--space-7)] flex items-center justify-between">
         {/* Wordmark */}
         <Link href="/" className="font-display font-extralight text-[length:var(--type-body-m)] tracking-tighter hover:opacity-70 transition-opacity group">
