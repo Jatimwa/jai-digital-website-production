@@ -127,6 +127,24 @@
   --container-max: 100rem;   /* 1600px */
   --prose-max: 68.75rem;     /* 1100px */
 
+  /* ---------- SYSTEMATIC DIMENSIONS ---------- */
+  --width-spec-label: 20rem;
+  --width-case-stats: 320px;
+  --width-footer-brand: 2fr;
+  --grid-ratio-split: 1.5fr 1fr;
+  --grid-ratio-bio: 1fr 2fr;
+  --grid-ratio-footer: 2fr 1fr 1fr;
+  --grid-ratio-spacing: 14rem 1fr 10rem;
+  
+  --aspect-hero: 4 / 5;
+  --aspect-swatch: 1 / 1;
+  --aspect-banner: 21 / 9;
+  --aspect-banner-md: 3 / 1;
+
+  --min-h-textarea: 120px;
+  --size-hairline: 1px;
+  --type-scale-unit: 0.5em;
+
   /* ---------- MOTION ---------- */
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -169,6 +187,15 @@ button:focus-visible {
 }
 
 /* Core Utilities */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
 .accent {
   font-family: var(--font-editorial);
   font-style: italic;
