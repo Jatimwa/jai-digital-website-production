@@ -1,0 +1,19 @@
+# JAi Digital
+
+Human Strategy × AI Speed.
+Senior Digital Marketing Consultancy for UK SMEs.
+
+## Technical Foundation
+This site is built with a "Zero-Rot" systematic approach.
+- Framework: Next.js 15 (App Router)
+- Styling: Tailwind CSS 4.0-alpha (Zero-Deaf mandate)
+- Motion: GSAP + ScrollTrigger
+- Typography: Unbounded, Newsreader, Geist
+
+## Design System
+The production component library and brand guidelines are documented at [/design-system](/design-system).
+
+## Principles
+1. Diagnostics before prescriptions.
+2. Structural integrity over agency hype.
+3. Senior-practitioner depth.
