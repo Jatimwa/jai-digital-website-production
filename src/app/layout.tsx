@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { MotionInfrastructure } from "@/components/system/MotionInfrastructure";
 
 export const metadata: Metadata = {
   title: "JAi Digital",
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
+        <MotionInfrastructure />
         {children}
       </body>
     </html>
