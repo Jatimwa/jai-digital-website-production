@@ -2,15 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import { Container, Eyebrow } from "@/components/atoms";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function PinnedPhilosophy() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!window.gsap || !window.ScrollTrigger || !sectionRef.current) return;
-    const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
+    if (!sectionRef.current) return;
 
     const pin = ScrollTrigger.create({
       trigger: triggerRef.current,

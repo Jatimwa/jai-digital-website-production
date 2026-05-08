@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./MotionPrimitives";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function StatStrip() {
   const stats = [
@@ -38,11 +40,10 @@ function Counter({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!window.gsap || !ref.current) return;
-    const gsap = window.gsap;
+    if (!ref.current) return;
 
     const obj = { val: 0 };
-    gsap.to(obj, {
+    const tween = gsap.to(obj, {
       val: value,
       duration: 2,
       ease: "power2.out",
@@ -54,6 +55,11 @@ function Counter({ value }: { value: number }) {
         setDisplayValue(Number(obj.val.toFixed(value % 1 === 0 ? 0 : 1)));
       }
     });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
   }, [value]);
 
   return <span ref={ref} className="font-display font-extralight text-[length:var(--type-stat-md)] leading-none text-[color:var(--color-brand)]">{displayValue}</span>;

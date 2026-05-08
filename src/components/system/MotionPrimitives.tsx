@@ -1,20 +1,28 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitTypeLib from "split-type";
+
+// Register ScrollTrigger once on the client
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * Reveal Component
  * Handles scroll-triggered reveals (fade, rise, stagger)
  */
-export function Reveal({ 
-  children, 
-  variant = "fade-up", 
-  delay = 0, 
+export function Reveal({
+  children,
+  variant = "fade-up",
+  delay = 0,
   duration = 0.8,
   stagger = 0,
-  className = "" 
-}: { 
-  children: React.ReactNode; 
+  className = "",
+}: {
+  children: React.ReactNode;
   variant?: "fade-up" | "fade-in" | "slide-left" | "slide-right";
   delay?: number;
   duration?: number;
@@ -24,32 +32,37 @@ export function Reveal({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!window.gsap || !ref.current) return;
-    const gsap = window.gsap;
+    if (!ref.current) return;
 
-    let fromVars: any = { opacity: 0 };
-    let toVars: any = { 
-      opacity: 1, 
-      duration, 
-      delay, 
+    const fromVars: gsap.TweenVars = { opacity: 0 };
+    const toVars: gsap.TweenVars = {
+      opacity: 1,
+      duration,
+      delay,
       ease: "power3.out",
       scrollTrigger: {
         trigger: ref.current,
         start: "top 85%",
         toggleActions: "play none none none",
-      }
+      },
     };
 
     if (variant === "fade-up") fromVars.y = 40;
     if (variant === "slide-left") fromVars.x = 100;
     if (variant === "slide-right") fromVars.x = -100;
 
+    let tween: gsap.core.Tween;
     if (stagger > 0) {
       const elements = ref.current.children;
-      gsap.fromTo(elements, fromVars, { ...toVars, stagger });
+      tween = gsap.fromTo(elements, fromVars, { ...toVars, stagger });
     } else {
-      gsap.fromTo(ref.current, fromVars, toVars);
+      tween = gsap.fromTo(ref.current, fromVars, toVars);
     }
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
   }, [variant, delay, duration, stagger]);
 
   return <div ref={ref} className={className}>{children}</div>;
@@ -57,43 +70,49 @@ export function Reveal({
 
 /**
  * SplitText Component
- * Uses SplitType and GSAP to animate text by lines/words
+ * Uses SplitType and GSAP to animate text by lines/words/chars
  */
-export function SplitText({ 
-  text, 
-  type = "lines", 
-  className = "" 
-}: { 
-  text: string; 
-  type?: "lines" | "words" | "chars"; 
+export function SplitText({
+  text,
+  type = "lines",
+  className = "",
+}: {
+  text: string;
+  type?: "lines" | "words" | "chars";
   className?: string;
 }) {
-  const ref = useRef<HTMLHeadingElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!window.gsap || !window.SplitType || !ref.current) return;
-    const gsap = window.gsap;
-    const SplitType = window.SplitType;
+    if (!ref.current) return;
 
-    const split = new SplitType(ref.current, { types: type as any });
-    const targets = type === "lines" ? split.lines : type === "words" ? split.words : split.chars;
+    const split = new SplitTypeLib(ref.current, { types: type });
+    const targets =
+      type === "lines" ? split.lines :
+      type === "words" ? split.words :
+      split.chars;
 
-    gsap.fromTo(targets, 
-      { opacity: 0, y: 50 }, 
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 1, 
-        stagger: 0.1, 
+    if (!targets) return;
+
+    const tween = gsap.fromTo(
+      targets,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.1,
         ease: "power4.out",
         scrollTrigger: {
           trigger: ref.current,
           start: "top 85%",
-        }
+        },
       }
     );
 
     return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
       split.revert();
     };
   }, [text, type]);
@@ -105,37 +124,40 @@ export function SplitText({
  * Magnetic Component
  * Button/element follows cursor in a small radius
  */
-export function Magnetic({ children, strength = 0.5 }: { children: React.ReactNode; strength?: number }) {
+export function Magnetic({
+  children,
+  strength = 0.5,
+}: {
+  children: React.ReactNode;
+  strength?: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!window.gsap || !ref.current) return;
-    const gsap = window.gsap;
+    if (!ref.current) return;
+
+    const el = ref.current;
+    const parent = el.parentElement;
+    if (!parent) return;
 
     const moveElement = (e: MouseEvent) => {
       const { clientX, clientY } = e;
-      const { left, top, width, height } = ref.current!.getBoundingClientRect();
+      const { left, top, width, height } = el.getBoundingClientRect();
       const x = (clientX - (left + width / 2)) * strength;
       const y = (clientY - (top + height / 2)) * strength;
-
-      gsap.to(ref.current, { x, y, duration: 0.6, ease: "power2.out" });
+      gsap.to(el, { x, y, duration: 0.6, ease: "power2.out" });
     };
 
     const resetElement = () => {
-      gsap.to(ref.current, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+      gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
     };
 
-    const parent = ref.current.parentElement;
-    if (parent) {
-      parent.addEventListener("mousemove", moveElement);
-      parent.addEventListener("mouseleave", resetElement);
-    }
+    parent.addEventListener("mousemove", moveElement);
+    parent.addEventListener("mouseleave", resetElement);
 
     return () => {
-      if (parent) {
-        parent.removeEventListener("mousemove", moveElement);
-        parent.removeEventListener("mouseleave", resetElement);
-      }
+      parent.removeEventListener("mousemove", moveElement);
+      parent.removeEventListener("mouseleave", resetElement);
     };
   }, [strength]);
 
@@ -146,40 +168,42 @@ export function Magnetic({ children, strength = 0.5 }: { children: React.ReactNo
  * Marquee Component
  * Infinite horizontal scroll
  */
-export function Marquee({ 
-  children, 
-  speed = 1, 
-  direction = "left", 
-  className = "" 
-}: { 
-  children: React.ReactNode; 
-  speed?: number; 
+export function Marquee({
+  children,
+  speed = 1,
+  direction = "left",
+  className = "",
+}: {
+  children: React.ReactNode;
+  speed?: number;
   direction?: "left" | "right";
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!window.gsap || !ref.current) return;
-    const gsap = window.gsap;
+    if (!ref.current) return;
 
     const xPercent = direction === "left" ? -100 : 100;
-    
-    // Create the loop
-    gsap.to(ref.current, {
-      xPercent,
-      repeat: -1,
-      duration: 20 / speed,
-      ease: "none",
-    }).totalProgress(0.5);
+    const tween = gsap
+      .to(ref.current, {
+        xPercent,
+        repeat: -1,
+        duration: 20 / speed,
+        ease: "none",
+      })
+      .totalProgress(0.5);
 
+    return () => {
+      tween.kill();
+    };
   }, [speed, direction]);
 
   return (
     <div className={`flex whitespace-nowrap overflow-hidden ${className}`}>
       <div ref={ref} className="flex">
         {children}
-        {children} {/* Duplicate for seamless loop */}
+        {children}
       </div>
     </div>
   );
