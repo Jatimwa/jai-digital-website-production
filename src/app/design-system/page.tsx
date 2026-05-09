@@ -524,37 +524,40 @@ export default function DesignSystemPage() {
           <BigBoldCTA />
         </section>
 
-        {/* 11 · ARCHETYPES (Zone A style documentation) */}
-        <section className="py-[var(--space-9)] border-b border-[var(--color-subtle)] bg-[var(--color-surface-0)]">
-           <Container>
-              <Reveal>
-                <SectionHead
-                  idx="11"
-                  kicker="System · Page Archetypes"
-                  title={<>Reusable <span className="accent">Infrastructure.</span></>}
-                  lede="Atomic units and page-level archetypes for rapid, consistent deployment."
-                />
-              </Reveal>
+        {/* 12 · INNER HERO ARCHETYPE */}
+        <section className="py-[var(--space-7)] border-b border-[var(--color-subtle)] bg-[var(--color-surface-0)]">
+          <Container>
+            <Reveal>
+              <Eyebrow>12 · Archetype · Inner Hero</Eyebrow>
+              <p className="mt-[var(--space-3)] font-mono text-[length:var(--type-mono-xs)] uppercase tracking-[0.2em] text-[color:var(--color-ink-2)]">
+                Used on service pages, case studies, about pages
+              </p>
+            </Reveal>
+          </Container>
+        </section>
 
-              <div className="space-y-[var(--space-8)] mt-[var(--space-8)]">
-                <SpecRow label="Inner Hero Archetype" meta="Eyebrow + Fluid H2 + Lede" first>
-                   <div className="border border-[var(--color-subtle)] rounded-[var(--radius-card)] overflow-hidden">
-                      <InnerHero 
-                        kicker="Service Detail" 
-                        title="Technical Infrastructure Audit." 
-                        lede="We find the rot that agencies hide in the shadows of the build."
-                      />
-                   </div>
-                </SpecRow>
+        <InnerHero 
+          kicker="Service · Detail"
+          title="Technical Infrastructure Audit."
+          lede="We find the rot that agencies hide in the shadows of the build."
+        />
 
-                <SpecRow label="Inline CTA Archetype" meta="Horizontal | High-Visibility">
-                   <InlineCTA 
-                     title="Ready to fix your engine?" 
-                     label="Book Briefing" 
-                   />
-                </SpecRow>
-              </div>
-           </Container>
+        {/* 13 · INLINE CTA ARCHETYPE */}
+        <section className="py-[var(--space-7)] border-b border-[var(--color-subtle)] bg-[var(--color-surface-0)]">
+          <Container>
+            <Reveal>
+              <Eyebrow>13 · Archetype · Inline CTA</Eyebrow>
+              <p className="mt-[var(--space-3)] font-mono text-[length:var(--type-mono-xs)] uppercase tracking-[0.2em] text-[color:var(--color-ink-2)]">
+                Used mid-page within content sections
+              </p>
+            </Reveal>
+            <div className="mt-[var(--space-7)]">
+              <InlineCTA 
+                title="Ready to fix your engine?"
+                label="Book Briefing"
+              />
+            </div>
+          </Container>
         </section>
 
       </main>
